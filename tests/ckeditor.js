@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
 
@@ -7,6 +7,7 @@
 
 import InlineEditor from '../src/ckeditor';
 import BaseInlineEditor from '@ckeditor/ckeditor5-editor-inline/src/inlineeditor';
+import { describeMemoryUsage, testMemoryUsage } from '@ckeditor/ckeditor5-core/tests/_utils/memory';
 
 describe( 'InlineEditor build', () => {
 	let editor, editorElement;
@@ -154,5 +155,11 @@ describe( 'InlineEditor build', () => {
 			editor.setData( data );
 			expect( editor.getData() ).to.equal( data );
 		} );
+	} );
+
+	describeMemoryUsage( () => {
+		testMemoryUsage(
+			'should not grow on multiple create/destroy',
+			() => InlineEditor.create( document.querySelector( '#mem-editor' ) ) );
 	} );
 } );
