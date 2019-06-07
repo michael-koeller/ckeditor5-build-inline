@@ -5,8 +5,6 @@
  */
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import { downcastElementToElement } from '@ckeditor/ckeditor5-engine/src/conversion/downcast-converters';
-import { upcastElementToElement } from '@ckeditor/ckeditor5-engine/src/conversion/upcast-converters';
 
 import '../theme/datafield.css';
 
@@ -32,17 +30,17 @@ export default class DataField extends Plugin {
         } );
 
 		// Convert model element -> view element
-		editor.conversion.for('downcast').add( downcastElementToElement({
+		editor.conversion.for('downcast').elementToElement({
 			model: DATAFIELD,
 			view: ( modelElement, viewWriter ) => viewWriter.createContainerElement('span', { 
 				class: DATAFIELD, 
 				'data-ref': modelElement.getAttribute('ref'), 
 				title: modelElement.getAttribute('ref') 
 			})
-		}));
+		});
 
 		// Convert view element -> model element
-		editor.conversion.for('upcast').add( upcastElementToElement({
+		editor.conversion.for('upcast').elementToElement({
 			view: {
 				name: 'span',
 				classes: DATAFIELD
@@ -53,7 +51,7 @@ export default class DataField extends Plugin {
 				modelWriter.appendText(textContent, el);
 				return el;
 			}
-		}));
+		});
 	}
 
 	static get pluginName() {
