@@ -32,7 +32,9 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 
 // Custom added plugin
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
-import DataField from '../plugins/datafield/src/datafield';
+import DataField from '../plugins/fields/src/datafield';
+import Property from '../plugins/fields/src/property';
+import Calculation from '../plugins/fields/src/calculation';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -63,7 +65,9 @@ InlineEditor.builtinPlugins = [
 	TableToolbar,
 	// Custom added plugin
 	Alignment,
-	DataField
+	DataField,
+	Property,
+	Calculation
 ];
 
 // Editor configuration.
