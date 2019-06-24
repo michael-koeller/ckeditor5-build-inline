@@ -1,5 +1,5 @@
 /**
- * @module datafield
+ * @module calculation
  */
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
@@ -39,7 +39,10 @@ export default class Calculation extends Plugin {
 				classes: CALCULATION
 			},
 			model: ( viewElement, modelWriter ) => {
-				return modelWriter.createElement( CALCULATION, { formula: viewElement.getAttribute( 'data-formula' ) } );
+				const attrs = {
+					formula: viewElement.getAttribute( 'data-formula' )
+				};
+				return modelWriter.createElement( CALCULATION, attrs );
 			}
 		} );
 
@@ -61,11 +64,12 @@ export default class Calculation extends Plugin {
 		editor.conversion.for( 'editingDowncast' ).elementToElement( {
 			model: CALCULATION,
 			view: ( modelElement, viewWriter ) => {
-				const el = viewWriter.createContainerElement( 'span', {
+				const el = viewWriter.createEditableElement( 'span', {
 					class: CALCULATION,
 					'data-formula': modelElement.getAttribute( 'formula' ),
 					title: modelElement.getAttribute( 'formula' )
 				} );
+				viewWriter.setAttribute( 'contenteditable', 'false', el );
 				return el;
 			}
 		} );

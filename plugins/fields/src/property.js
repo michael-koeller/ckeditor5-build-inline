@@ -1,5 +1,5 @@
 /**
- * @module datafield
+ * @module property
  */
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
@@ -32,7 +32,7 @@ export default class Property extends Plugin {
 			// The placeholder will acts as an inline node:
 			isInline: true,
 			// The inline-widget is self-contained so cannot be split by the caret and can be selected:
-			isObject: false
+			isObject: true
 		} );
 		editor.model.schema.extend( '$text', {
 			allowIn: PROPERTY
@@ -68,6 +68,12 @@ export default class Property extends Plugin {
 					class: PROPERTY,
 					'data-alias': modelElement.getAttribute( 'alias' ),
 					title: modelElement.getAttribute( 'alias' )
+				} );
+				el.on( 'change:text', ( evt, node ) => {
+					// TODO: validate input: only numbers allowed
+					if ( evt && node ) {
+						node.data;
+					}
 				} );
 				return toWidgetEditable( el, viewWriter );
 			}

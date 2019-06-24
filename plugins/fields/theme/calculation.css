@@ -1,8 +1,6 @@
 .ck-content span.calculation {
-	padding-top: 1px;
-	padding-left: 2px;
-	padding-right: 2px;
+	padding: 0.15em 0.3em;
 	background-color: #e0e0e0;
 	border: 1px solid #aaaaaa;
-	border-radius: 2px;
+	border-radius: 0.2em;
 }

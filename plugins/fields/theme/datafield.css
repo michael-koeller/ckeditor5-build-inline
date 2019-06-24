@@ -1,6 +1,4 @@
 .ck-content span.datafield {
-	padding-top: 1px;
-	padding-left: 2px;
-	padding-right: 2px;
+	padding: 0.1em 0.15em;
 	background-color: #e0e0e0;
 }

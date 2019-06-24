@@ -57,7 +57,7 @@ export default class DataField extends Plugin {
 					class: DATAFIELD,
 					'data-source': modelElement.getAttribute( 'source' )
 				};
-				if ( modelElement.hasAttribute( 'data-alias' ) ) {
+				if ( modelElement.hasAttribute( 'alias' ) ) {
 					attrs[ 'data-alias' ] = modelElement.getAttribute( 'alias' );
 				}
 				return viewWriter.createContainerElement( 'span', attrs );
@@ -68,10 +68,13 @@ export default class DataField extends Plugin {
 		editor.conversion.for( 'editingDowncast' ).elementToElement( {
 			model: DATAFIELD,
 			view: ( modelElement, viewWriter ) => {
-				return viewWriter.createContainerElement( 'span', {
+				const el = viewWriter.createEditableElement( 'span', {
 					class: DATAFIELD,
-					title: modelElement.getAttribute( 'source' )
+					title: modelElement.getAttribute( 'source' ) +
+							( modelElement.hasAttribute( 'alias' ) ? ' -> ' + modelElement.hasAttribute( 'alias' ) : '' )
 				} );
+				viewWriter.setAttribute( 'contenteditable', 'false', el );
+				return el;
 			}
 		} );
 	}
