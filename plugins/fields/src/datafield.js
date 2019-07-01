@@ -21,7 +21,7 @@ export default class DataField extends Plugin {
 			// Allow wherever text is allowed:
 			allowWhere: '$text',
 			// The placeholder can have many types, like date, name, surname, etc:
-			allowAttributes: [ 'source', 'alias' ],
+			allowAttributes: [ 'source', 'alias', 'final' ],
 
 			// The placeholder will acts as an inline node:
 			isInline: true,
@@ -45,6 +45,9 @@ export default class DataField extends Plugin {
 				if ( viewElement.hasAttribute( 'data-alias' ) ) {
 					attrs.alias = viewElement.getAttribute( 'data-alias' );
 				}
+				if ( viewElement.hasAttribute( 'data-final' ) ) {
+					attrs.final = viewElement.getAttribute( 'data-final' );
+				}
 				return modelWriter.createElement( DATAFIELD, attrs );
 			}
 		} );
@@ -59,6 +62,9 @@ export default class DataField extends Plugin {
 				};
 				if ( modelElement.hasAttribute( 'alias' ) ) {
 					attrs[ 'data-alias' ] = modelElement.getAttribute( 'alias' );
+				}
+				if ( modelElement.hasAttribute( 'final' ) ) {
+					attrs[ 'data-final' ] = modelElement.getAttribute( 'final' );
 				}
 				return viewWriter.createContainerElement( 'span', attrs );
 			}
