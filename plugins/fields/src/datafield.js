@@ -21,7 +21,7 @@ export default class DataField extends Plugin {
 			// Allow wherever text is allowed:
 			allowWhere: '$text',
 			// The placeholder can have many types, like date, name, surname, etc:
-			allowAttributes: [ 'source', 'alias', 'final' ],
+			allowAttributes: [ 'source', 'alias', 'final', 'style' ],
 
 			// The placeholder will acts as an inline node:
 			isInline: true,
@@ -48,6 +48,9 @@ export default class DataField extends Plugin {
 				if ( viewElement.hasAttribute( 'data-final' ) ) {
 					attrs.final = viewElement.getAttribute( 'data-final' );
 				}
+				if ( viewElement.hasAttribute( 'style' ) ) {
+					attrs.style = viewElement.getAttribute( 'style' );
+				}
 				return modelWriter.createElement( DATAFIELD, attrs );
 			}
 		} );
@@ -66,6 +69,9 @@ export default class DataField extends Plugin {
 				if ( modelElement.hasAttribute( 'final' ) ) {
 					attrs[ 'data-final' ] = modelElement.getAttribute( 'final' );
 				}
+				if ( modelElement.hasAttribute( 'style' ) ) {
+					attrs.style = modelElement.getAttribute( 'style' );
+				}
 				return viewWriter.createContainerElement( 'x-field', attrs );
 			}
 		} );
@@ -74,11 +80,15 @@ export default class DataField extends Plugin {
 		editor.conversion.for( 'editingDowncast' ).elementToElement( {
 			model: DATAFIELD,
 			view: ( modelElement, viewWriter ) => {
-				const el = viewWriter.createEditableElement( 'span', {
+				const attrs = {
 					class: DATAFIELD,
 					title: modelElement.getAttribute( 'source' ) +
-							( modelElement.hasAttribute( 'alias' ) ? ' -> ' + modelElement.hasAttribute( 'alias' ) : '' )
-				} );
+							( modelElement.hasAttribute( 'alias' ) ? ' -> ' + modelElement.getAttribute( 'alias' ) : '' ),
+				};
+				if ( modelElement.hasAttribute( 'style' ) ) {
+					attrs.style = modelElement.getAttribute( 'style' );
+				}
+				const el = viewWriter.createEditableElement( 'span', attrs );
 				viewWriter.setAttribute( 'contenteditable', 'false', el );
 				return el;
 			}

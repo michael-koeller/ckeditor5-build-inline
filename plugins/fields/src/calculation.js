@@ -73,7 +73,8 @@ export default class Calculation extends Plugin {
 				const el = viewWriter.createEditableElement( 'span', {
 					class: CALCULATION,
 					'data-formula': modelElement.getAttribute( 'formula' ),
-					title: modelElement.getAttribute( 'formula' )
+					title: modelElement.getAttribute( 'formula' ) +
+							( modelElement.hasAttribute( 'alias' ) ? ' -> ' + modelElement.getAttribute( 'alias' ) : '' )
 				} );
 				viewWriter.setAttribute( 'contenteditable', 'false', el );
 				return el;
