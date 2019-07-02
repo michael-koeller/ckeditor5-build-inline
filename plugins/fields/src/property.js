@@ -41,7 +41,7 @@ export default class Property extends Plugin {
 		// Convert view element -> model element
 		editor.conversion.for( 'upcast' ).elementToElement( {
 			view: {
-				name: 'span',
+				name: 'x-field',
 				classes: PROPERTY
 			},
 			model: ( viewElement, modelWriter ) => {
@@ -53,7 +53,7 @@ export default class Property extends Plugin {
 		editor.conversion.for( 'dataDowncast' ).elementToElement( {
 			model: PROPERTY,
 			view: ( modelElement, viewWriter ) => {
-				return viewWriter.createEditableElement( 'span', {
+				return viewWriter.createEditableElement( 'x-field', {
 					class: PROPERTY,
 					'data-alias': modelElement.getAttribute( 'alias' )
 				} );

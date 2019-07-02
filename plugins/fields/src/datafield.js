@@ -35,7 +35,7 @@ export default class DataField extends Plugin {
 		// Convert view element -> model element
 		editor.conversion.for( 'upcast' ).elementToElement( {
 			view: {
-				name: 'span',
+				name: 'x-field',
 				classes: DATAFIELD
 			},
 			model: ( viewElement, modelWriter ) => {
@@ -66,7 +66,7 @@ export default class DataField extends Plugin {
 				if ( modelElement.hasAttribute( 'final' ) ) {
 					attrs[ 'data-final' ] = modelElement.getAttribute( 'final' );
 				}
-				return viewWriter.createContainerElement( 'span', attrs );
+				return viewWriter.createContainerElement( 'x-field', attrs );
 			}
 		} );
 

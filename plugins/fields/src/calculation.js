@@ -35,7 +35,7 @@ export default class Calculation extends Plugin {
 		// Convert view element -> model element
 		editor.conversion.for( 'upcast' ).elementToElement( {
 			view: {
-				name: 'span',
+				name: 'x-field',
 				classes: CALCULATION
 			},
 			model: ( viewElement, modelWriter ) => {
@@ -61,7 +61,7 @@ export default class Calculation extends Plugin {
 				if ( modelElement.hasAttribute( 'alias' ) ) {
 					attrs[ 'data-alias' ] = modelElement.getAttribute( 'alias' );
 				}
-				return viewWriter.createContainerElement( 'span', attrs );
+				return viewWriter.createContainerElement( 'x-field', attrs );
 			}
 		} );
 
