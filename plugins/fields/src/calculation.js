@@ -21,7 +21,7 @@ export default class Calculation extends Plugin {
 			// Allow wherever text is allowed:
 			allowWhere: '$text',
 			// The placeholder can have many types, like date, name, surname, etc:
-			allowAttributes: [ 'formula', 'alias' ],
+			allowAttributes: [ 'formula', 'alias', 'precision' ],
 
 			// The placeholder will acts as an inline node:
 			isInline: true,
@@ -45,6 +45,9 @@ export default class Calculation extends Plugin {
 				if ( viewElement.hasAttribute( 'data-alias' ) ) {
 					attrs.alias = viewElement.getAttribute( 'data-alias' );
 				}
+				if ( viewElement.hasAttribute( 'data-precision' ) ) {
+					attrs.precision = viewElement.getAttribute( 'data-precision' );
+				}
 				return modelWriter.createElement( CALCULATION, attrs );
 			}
 		} );
@@ -60,6 +63,9 @@ export default class Calculation extends Plugin {
 				};
 				if ( modelElement.hasAttribute( 'alias' ) ) {
 					attrs[ 'data-alias' ] = modelElement.getAttribute( 'alias' );
+				}
+				if ( modelElement.hasAttribute( 'precision' ) ) {
+					attrs[ 'data-precision' ] = modelElement.getAttribute( 'precision' );
 				}
 				return viewWriter.createContainerElement( 'x-field', attrs );
 			}
