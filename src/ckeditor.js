@@ -32,6 +32,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 
 // Custom added plugin
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
 import DataField from '../plugins/fields/src/datafield';
 import Property from '../plugins/fields/src/property';
 import Calculation from '../plugins/fields/src/calculation';
@@ -65,6 +66,7 @@ InlineEditor.builtinPlugins = [
 	TableToolbar,
 	// Custom added plugin
 	Alignment,
+	Highlight,
 	DataField,
 	Property,
 	Calculation
@@ -82,12 +84,11 @@ InlineEditor.defaultConfig = {
 			'superscript',
 			'blockQuote',
 			'link',
+			'highlight:yellowMarker',
 			'|',
 			'alignment:left', 'alignment:right', 'alignment:center', 'alignment:justify',
 			'|',
-			'bulletedList',
-			'numberedList',
-			'insertTable',
+			'bulletedList', 'numberedList', 'insertTable',
 			'|',
 			'undo', 'redo'
 		]
