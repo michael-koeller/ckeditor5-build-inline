@@ -31,7 +31,7 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 
 // Custom added plugin
-import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import Alignment from '../plugins/ckeditor5-alignment/src/alignment';	// clone of internal feature: default adjusted to 'justify'
 import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
 import DataField from '../plugins/fields/src/datafield';
 import Property from '../plugins/fields/src/property';
@@ -86,7 +86,7 @@ InlineEditor.defaultConfig = {
 			'link',
 			'highlight:yellowMarker',
 			'|',
-			'alignment:left', 'alignment:right', 'alignment:center', 'alignment:justify',
+			'alignment:justify', 'alignment:left', 'alignment:right', 'alignment:center',
 			'|',
 			'bulletedList', 'numberedList', 'insertTable',
 			'|',
