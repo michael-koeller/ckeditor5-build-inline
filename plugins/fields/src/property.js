@@ -84,7 +84,7 @@ export default class Property extends Plugin {
 					text: '--',
 					isDirectHost: false
 				} );
-				return false;
+				return w;
 			}
 		} );
 	}
