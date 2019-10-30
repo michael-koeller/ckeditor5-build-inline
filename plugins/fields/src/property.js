@@ -5,6 +5,7 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import { toWidgetEditable } from '@ckeditor/ckeditor5-widget/src/utils';
 import Widget from '@ckeditor/ckeditor5-widget/src/widget';
+import { enablePlaceholder } from '@ckeditor/ckeditor5-engine/src/view/placeholder';
 
 import '../theme/property.css';
 
@@ -71,11 +72,19 @@ export default class Property extends Plugin {
 				} );
 				el.on( 'change:text', ( evt, node ) => {
 					// TODO: validate input: only numbers allowed
+					// console.log('editor.plugin.property.editingDowncast[change:text]', evt, node )
 					if ( evt && node ) {
-						node.data;
+						// todo: input validation
 					}
 				} );
-				return toWidgetEditable( el, viewWriter );
+				const w = toWidgetEditable( el, viewWriter );
+				enablePlaceholder( {
+					view: editor.editing.view,
+					element: w,
+					text: '--',
+					isDirectHost: false
+				} );
+				return false;
 			}
 		} );
 	}
