@@ -6,6 +6,7 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import { toWidgetEditable } from '@ckeditor/ckeditor5-widget/src/utils';
 import Widget from '@ckeditor/ckeditor5-widget/src/widget';
 import { enablePlaceholder } from '@ckeditor/ckeditor5-engine/src/view/placeholder';
+import { keyCodes } from '@ckeditor/ckeditor5-utils/src/keyboard';
 
 import '../theme/property.css';
 
@@ -22,6 +23,7 @@ export default class Property extends Plugin {
 
 	init() {
 		const editor = this.editor;
+		const viewDocument = editor.editing.view.document;
 
 		// Register new model element
 		editor.model.schema.register( PROPERTY, {
@@ -70,9 +72,9 @@ export default class Property extends Plugin {
 					'data-alias': modelElement.getAttribute( 'alias' ),
 					title: modelElement.getAttribute( 'alias' )
 				} );
-				el.on( 'change:text', ( evt, node ) => {
+				el.on( 'change', ( evt, node ) => {
 					// TODO: validate input: only numbers allowed
-					// console.log('editor.plugin.property.editingDowncast[change:text]', evt, node )
+					// console.log('editor.plugin.property.editingDowncast[change]', evt )
 					if ( evt && node ) {
 						// todo: input validation
 					}
@@ -86,6 +88,18 @@ export default class Property extends Plugin {
 				} );
 				return w;
 			}
+		} );
+
+		viewDocument.on( 'keydown', ( evt, data ) => {
+			// const selection = viewDocument.selection;
+			if ( data.keyCode == keyCodes.delete ) {
+				// const next = selection.getLastPosition().nodeAfter;
+				// console.log('editor.editing.view.document[keydown]: next = ', next);
+			} else if ( data.keyCode == keyCodes.backspace ) {
+				// const prev = selection.getFirstPosition().nodeBefore;
+				// console.log('editor.editing.view.document[keydown]: prev = ', prev);
+			}
+			// console.log( 'Oops: You deleted a data field. If it was by accident, press undo button or type \'Ctrl-Z\'.' );
 		} );
 	}
 }
