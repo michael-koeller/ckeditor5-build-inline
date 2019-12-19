@@ -48,6 +48,9 @@ export default class Calculation extends Plugin {
 				if ( viewElement.hasAttribute( 'data-precision' ) ) {
 					attrs.precision = viewElement.getAttribute( 'data-precision' );
 				}
+				if ( viewElement.hasAttribute( 'data-eval-formula' ) ) {
+					attrs.evalFormula = viewElement.getAttribute( 'data-eval-formula' );
+				}
 				return modelWriter.createElement( CALCULATION, attrs );
 			}
 		} );
@@ -67,6 +70,9 @@ export default class Calculation extends Plugin {
 				if ( modelElement.hasAttribute( 'precision' ) ) {
 					attrs[ 'data-precision' ] = modelElement.getAttribute( 'precision' );
 				}
+				if ( modelElement.hasAttribute( 'evalFormula' ) ) {
+					attrs[ 'data-eval-formula' ] = modelElement.getAttribute( 'evalFormula' );
+				}
 				return viewWriter.createContainerElement( 'x-field', attrs );
 			}
 		} );
@@ -79,7 +85,9 @@ export default class Calculation extends Plugin {
 				const el = viewWriter.createEditableElement( 'span', {
 					class: CALCULATION,
 					'data-formula': modelElement.getAttribute( 'formula' ),
+					'data-html': 'true',
 					title: modelElement.getAttribute( 'formula' ) +
+							( modelElement.hasAttribute( 'evalFormula' ) ? ' = ' + modelElement.getAttribute( 'evalFormula' ) : '' ) +
 							( modelElement.hasAttribute( 'alias' ) ? ' -> ' + modelElement.getAttribute( 'alias' ) : '' )
 				} );
 				viewWriter.setAttribute( 'contenteditable', 'false', el );
