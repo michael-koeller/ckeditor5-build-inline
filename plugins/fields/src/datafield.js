@@ -20,10 +20,10 @@ export default class DataField extends Plugin {
 		editor.model.schema.register( DATAFIELD, {
 			// Allow wherever text is allowed:
 			allowWhere: '$text',
-			// The placeholder can have many types, like date, name, surname, etc:
+			// Declare allowed model attributes:
 			allowAttributes: [ 'source', 'alias', 'final', 'style' ],
 
-			// The placeholder will acts as an inline node:
+			// Data fields will act as an inline node:
 			isInline: true,
 			// The inline-widget is self-contained so cannot be split by the caret and can be selected:
 			isObject: true

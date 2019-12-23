@@ -20,10 +20,10 @@ export default class Calculation extends Plugin {
 		editor.model.schema.register( CALCULATION, {
 			// Allow wherever text is allowed:
 			allowWhere: '$text',
-			// The placeholder can have many types, like date, name, surname, etc:
-			allowAttributes: [ 'formula', 'alias', 'precision' ],
+			// Declare allowed model attributes:
+			allowAttributes: [ 'formula', 'alias', 'precision', 'evalFormula' ],
 
-			// The placeholder will acts as an inline node:
+			// Calculations will act as an inline node:
 			isInline: true,
 			// The inline-widget is self-contained so cannot be split by the caret and can be selected:
 			isObject: true
@@ -48,8 +48,8 @@ export default class Calculation extends Plugin {
 				if ( viewElement.hasAttribute( 'data-precision' ) ) {
 					attrs.precision = viewElement.getAttribute( 'data-precision' );
 				}
-				if ( viewElement.hasAttribute( 'data-eval-formula' ) ) {
-					attrs.evalFormula = viewElement.getAttribute( 'data-eval-formula' );
+				if ( viewElement.hasAttribute( 'data-evalformula' ) ) {
+					attrs.evalFormula = viewElement.getAttribute( 'data-evalformula' );
 				}
 				return modelWriter.createElement( CALCULATION, attrs );
 			}
@@ -70,9 +70,6 @@ export default class Calculation extends Plugin {
 				if ( modelElement.hasAttribute( 'precision' ) ) {
 					attrs[ 'data-precision' ] = modelElement.getAttribute( 'precision' );
 				}
-				if ( modelElement.hasAttribute( 'evalFormula' ) ) {
-					attrs[ 'data-eval-formula' ] = modelElement.getAttribute( 'evalFormula' );
-				}
 				return viewWriter.createContainerElement( 'x-field', attrs );
 			}
 		} );
@@ -85,7 +82,6 @@ export default class Calculation extends Plugin {
 				const el = viewWriter.createEditableElement( 'span', {
 					class: CALCULATION,
 					'data-formula': modelElement.getAttribute( 'formula' ),
-					'data-html': 'true',
 					title: modelElement.getAttribute( 'formula' ) +
 							( modelElement.hasAttribute( 'evalFormula' ) ? ' = ' + modelElement.getAttribute( 'evalFormula' ) : '' ) +
 							( modelElement.hasAttribute( 'alias' ) ? ' -> ' + modelElement.getAttribute( 'alias' ) : '' )

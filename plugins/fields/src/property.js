@@ -29,10 +29,10 @@ export default class Property extends Plugin {
 		editor.model.schema.register( PROPERTY, {
 			// Allow wherever text is allowed:
 			allowWhere: '$text',
-			// The placeholder can have many types, like date, name, surname, etc:
+			// Declare allowed model attributes:
 			allowAttributes: [ 'alias' ],
 
-			// The placeholder will acts as an inline node:
+			// Properties will act as an inline node:
 			isInline: true,
 			// The inline-widget is self-contained so cannot be split by the caret and can be selected:
 			isObject: true
