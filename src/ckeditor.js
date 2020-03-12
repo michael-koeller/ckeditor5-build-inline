@@ -36,6 +36,7 @@ import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
 import DataField from '../plugins/fields/src/datafield';
 import Property from '../plugins/fields/src/property';
 import Calculation from '../plugins/fields/src/calculation';
+import ContextRef from '../plugins/fields/src/contextRef';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -69,7 +70,8 @@ InlineEditor.builtinPlugins = [
 	Highlight,
 	DataField,
 	Property,
-	Calculation
+	Calculation,
+	ContextRef
 ];
 
 // Editor configuration.
