@@ -72,7 +72,7 @@ export default class ContextRef extends Plugin {
 				} );
 				viewWriter.insert( viewWriter.createRangeIn( elP ).start, elA );
 
-				const elSpan = viewWriter.createContainerElement( 'span', { class: 'oi oi-document' } );
+				const elSpan = viewWriter.createContainerElement( 'span', { class: 'oi oi-link-intact' } );
 				viewWriter.insert( viewWriter.createRangeIn( elA ).start, elSpan );
 
 				return elP;
