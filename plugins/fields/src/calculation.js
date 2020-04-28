@@ -21,7 +21,7 @@ export default class Calculation extends Plugin {
 			// Allow wherever text is allowed:
 			allowWhere: '$text',
 			// Declare allowed model attributes:
-			allowAttributes: [ 'formula', 'alias', 'precision', 'evalFormula' ],
+			allowAttributes: [ 'formula', 'alias', 'format', 'evalFormula', 'value' ],
 
 			// Calculations will act as an inline node:
 			isInline: true,
@@ -45,11 +45,14 @@ export default class Calculation extends Plugin {
 				if ( viewElement.hasAttribute( 'data-alias' ) ) {
 					attrs.alias = viewElement.getAttribute( 'data-alias' );
 				}
-				if ( viewElement.hasAttribute( 'data-precision' ) ) {
-					attrs.precision = viewElement.getAttribute( 'data-precision' );
+				if ( viewElement.hasAttribute( 'data-format' ) ) {
+					attrs.format = viewElement.getAttribute( 'data-format' );
 				}
 				if ( viewElement.hasAttribute( 'data-evalformula' ) ) {
 					attrs.evalFormula = viewElement.getAttribute( 'data-evalformula' );
+				}
+				if ( viewElement.hasAttribute( 'data-value' ) ) {
+					attrs.value = viewElement.getAttribute( 'data-value' );
 				}
 				return modelWriter.createElement( CALCULATION, attrs );
 			}
@@ -67,8 +70,8 @@ export default class Calculation extends Plugin {
 				if ( modelElement.hasAttribute( 'alias' ) ) {
 					attrs[ 'data-alias' ] = modelElement.getAttribute( 'alias' );
 				}
-				if ( modelElement.hasAttribute( 'precision' ) ) {
-					attrs[ 'data-precision' ] = modelElement.getAttribute( 'precision' );
+				if ( modelElement.hasAttribute( 'format' ) ) {
+					attrs[ 'data-format' ] = modelElement.getAttribute( 'format' );
 				}
 				return viewWriter.createContainerElement( 'x-field', attrs );
 			}
@@ -84,6 +87,7 @@ export default class Calculation extends Plugin {
 					'data-formula': modelElement.getAttribute( 'formula' ),
 					title: modelElement.getAttribute( 'formula' ) +
 							( modelElement.hasAttribute( 'evalFormula' ) ? ' = ' + modelElement.getAttribute( 'evalFormula' ) : '' ) +
+							( modelElement.hasAttribute( 'value' ) ? ' = ' + modelElement.getAttribute( 'value' ) : '' ) +
 							( modelElement.hasAttribute( 'alias' ) ? ' -> ' + modelElement.getAttribute( 'alias' ) : '' )
 				} );
 				viewWriter.setAttribute( 'contenteditable', 'false', el );
