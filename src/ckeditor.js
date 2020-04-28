@@ -32,9 +32,12 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 
-// Custom added plugin
+// Add plugins
 import Alignment from '../plugins/ckeditor5-alignment/src/alignment';	// clone of internal feature: default adjusted to 'justify'
 import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
+import FontSize from '@ckeditor/ckeditor5-font/src/fontsize';
+
+// Custom plugins
 import DataField from '../plugins/fields/src/datafield';
 import Property from '../plugins/fields/src/property';
 import Calculation from '../plugins/fields/src/calculation';
@@ -69,9 +72,13 @@ InlineEditor.builtinPlugins = [
 	Table,
 	TableToolbar,
 	TextTransformation,
-	// Custom added plugin
+
+	// Add plugins
 	Alignment,
 	Highlight,
+	FontSize,
+
+	// Custom plugins
 	DataField,
 	Property,
 	Calculation,
@@ -80,10 +87,14 @@ InlineEditor.builtinPlugins = [
 
 // Editor configuration.
 InlineEditor.defaultConfig = {
+	fontSize: {
+		options: [ 'tiny', 'small', 'default', 'big', 'huge' ]
+	},
 	toolbar: {
 		items: [
 			'heading',
 			'|',
+			'fontSize',
 			'bold',
 			'italic',
 			'subscript',
