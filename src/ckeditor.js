@@ -43,6 +43,7 @@ import Property from '../plugins/fields/src/property';
 import Calculation from '../plugins/fields/src/calculation';
 import ContextRef from '../plugins/fields/src/contextRef';
 import Dynamic from '../plugins/fields/src/dynamic';
+import Whitespaces from '../plugins/whitespaces/src/whitespaces';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -84,7 +85,8 @@ InlineEditor.builtinPlugins = [
 	Property,
 	Calculation,
 	ContextRef,
-	Dynamic
+	Dynamic,
+	Whitespaces
 ];
 
 // Editor configuration.
