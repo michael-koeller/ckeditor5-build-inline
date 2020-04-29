@@ -42,6 +42,7 @@ import DataField from '../plugins/fields/src/datafield';
 import Property from '../plugins/fields/src/property';
 import Calculation from '../plugins/fields/src/calculation';
 import ContextRef from '../plugins/fields/src/contextRef';
+import Dynamic from '../plugins/fields/src/dynamic';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -82,7 +83,8 @@ InlineEditor.builtinPlugins = [
 	DataField,
 	Property,
 	Calculation,
-	ContextRef
+	ContextRef,
+	Dynamic
 ];
 
 // Editor configuration.

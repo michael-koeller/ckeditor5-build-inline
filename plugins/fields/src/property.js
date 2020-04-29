@@ -8,7 +8,7 @@ import Widget from '@ckeditor/ckeditor5-widget/src/widget';
 import { enablePlaceholder } from '@ckeditor/ckeditor5-engine/src/view/placeholder';
 import { keyCodes } from '@ckeditor/ckeditor5-utils/src/keyboard';
 
-import '../theme/property.css';
+import '../theme/fields.css';
 
 const PROPERTY = 'property';
 

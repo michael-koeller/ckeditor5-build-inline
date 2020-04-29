@@ -6,22 +6,22 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
 import '../theme/fields.css';
 
-const DATAFIELD = 'datafield';
+const DYNAMIC = 'dynamic';
 
-export default class DataField extends Plugin {
+export default class Dynamic extends Plugin {
 	static get pluginName() {
-		return 'DataField';
+		return 'Dynamic';
 	}
 
 	init() {
 		const editor = this.editor;
 
 		// Register new model element
-		editor.model.schema.register( DATAFIELD, {
+		editor.model.schema.register( DYNAMIC, {
 			// Allow wherever text is allowed:
 			allowWhere: '$text',
 			// Declare allowed model attributes:
-			allowAttributes: [ 'source', 'alias', 'final', 'style' ],
+			allowAttributes: [ 'prop', 'test', 'style' ],
 
 			// Data fields will act as an inline node:
 			isInline: true,
@@ -29,46 +29,36 @@ export default class DataField extends Plugin {
 			isObject: true
 		} );
 		editor.model.schema.extend( '$text', {
-			allowIn: DATAFIELD
+			allowIn: DYNAMIC
 		} );
 
 		// Convert view element -> model element
 		editor.conversion.for( 'upcast' ).elementToElement( {
 			view: {
 				name: 'x-field',
-				classes: DATAFIELD
+				classes: DYNAMIC
 			},
 			model: ( viewElement, modelWriter ) => {
 				const attrs = {
-					source: viewElement.getAttribute( 'data-source' )
+					prop: viewElement.getAttribute( 'data-prop' ),
+					test: viewElement.getAttribute( 'data-test' )
 				};
-				if ( viewElement.hasAttribute( 'data-alias' ) ) {
-					attrs.alias = viewElement.getAttribute( 'data-alias' );
-				}
-				if ( viewElement.hasAttribute( 'data-final' ) ) {
-					attrs.final = viewElement.getAttribute( 'data-final' );
-				}
 				if ( viewElement.hasAttribute( 'style' ) ) {
 					attrs.style = viewElement.getAttribute( 'style' );
 				}
-				return modelWriter.createElement( DATAFIELD, attrs );
+				return modelWriter.createElement( DYNAMIC, attrs );
 			}
 		} );
 
 		// Convert model element -> view element
 		editor.conversion.for( 'dataDowncast' ).elementToElement( {
-			model: DATAFIELD,
+			model: DYNAMIC,
 			view: ( modelElement, viewWriter ) => {
 				const attrs = {
-					class: DATAFIELD,
-					'data-source': modelElement.getAttribute( 'source' )
+					class: DYNAMIC,
+					'data-prop': modelElement.getAttribute( 'prop' ),
+					'data-test': modelElement.getAttribute( 'test' )
 				};
-				if ( modelElement.hasAttribute( 'alias' ) ) {
-					attrs[ 'data-alias' ] = modelElement.getAttribute( 'alias' );
-				}
-				if ( modelElement.hasAttribute( 'final' ) ) {
-					attrs[ 'data-final' ] = modelElement.getAttribute( 'final' );
-				}
 				if ( modelElement.hasAttribute( 'style' ) ) {
 					attrs.style = modelElement.getAttribute( 'style' );
 				}
@@ -78,12 +68,11 @@ export default class DataField extends Plugin {
 
 		// Convert model element -> view element
 		editor.conversion.for( 'editingDowncast' ).elementToElement( {
-			model: DATAFIELD,
+			model: DYNAMIC,
 			view: ( modelElement, viewWriter ) => {
 				const attrs = {
-					class: DATAFIELD,
-					title: modelElement.getAttribute( 'source' ) +
-							( modelElement.hasAttribute( 'alias' ) ? ' -> ' + modelElement.getAttribute( 'alias' ) : '' )
+					class: DYNAMIC,
+					title: modelElement.getAttribute( 'prop' ) + ' ' + modelElement.getAttribute( 'test' )
 				};
 				if ( modelElement.hasAttribute( 'style' ) ) {
 					attrs.style = modelElement.getAttribute( 'style' );

@@ -4,7 +4,7 @@
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
-import '../theme/calculation.css';
+import '../theme/fields.css';
 
 const CALCULATION = 'calculation';
 

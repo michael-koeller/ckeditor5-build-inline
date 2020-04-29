@@ -1,0 +1,11 @@
+
+.ck-content span.datafield, .ck-content span.dynamic, .ck-content span.calculation {
+	padding: 0.1em 0.15em;
+	background-color: #e0e0e0;
+}
+
+.ck-content span.property, .ck-content span.calculation {
+	padding: 0.15em 0.3em;
+	border: 1px solid #aaaaaa;
+	border-radius: 0.2em;
+}
