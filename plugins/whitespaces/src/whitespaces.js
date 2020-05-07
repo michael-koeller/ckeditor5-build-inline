@@ -14,7 +14,7 @@ export default class Whitespaces extends Plugin {
 	}
 
 	init() {
-		this.editor.keystrokes.set( 'Alt+space', ( key, stop ) => {
+		this.editor.keystrokes.set( 'ctrl+shift+space', ( key, stop ) => {
 			// console.log('ReportEditComponent.ngEditorOnReady()', 'Alt-space typed');
 			this.editor.execute( 'input', { text: NBSP } );
 			stop();
