@@ -44,6 +44,7 @@ import Calculation from '../plugins/fields/src/calculation';
 import ContextRef from '../plugins/fields/src/contextRef';
 import Dynamic from '../plugins/fields/src/dynamic';
 import Whitespaces from '../plugins/whitespaces/src/whitespaces';
+import CustomTableClasses from '../plugins/customtableclasses/src/customtableclasses';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -86,7 +87,8 @@ InlineEditor.builtinPlugins = [
 	Calculation,
 	ContextRef,
 	Dynamic,
-	Whitespaces
+	Whitespaces,
+	CustomTableClasses
 ];
 
 // Editor configuration.
